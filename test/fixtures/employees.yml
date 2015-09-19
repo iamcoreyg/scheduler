@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  position_title: MyString
+  is_manager: false
+  mon_start: 1
+  mon_end: 1
+  tues_start: 1
+  tues_end: 1
+  wed_start: 1
+  wed_end: 1
+  thurs_start: 1
+  thurs_end: 1
+  fri_start: 1
+  fri_end: 1
+  sat_start: 1
+  sat_end: 1
+  sun_start: 1
+  sun_end: 1
+
+two:
+  name: MyString
+  position_title: MyString
+  is_manager: false
+  mon_start: 1
+  mon_end: 1
+  tues_start: 1
+  tues_end: 1
+  wed_start: 1
+  wed_end: 1
+  thurs_start: 1
+  thurs_end: 1
+  fri_start: 1
+  fri_end: 1
+  sat_start: 1
+  sat_end: 1
+  sun_start: 1
+  sun_end: 1

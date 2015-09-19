@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @shift.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @shift.end %>
+</p>
+
+<p>
+  <strong>Active days:</strong>
+  <%= @shift.active_days %>
+</p>
+
+<p>
+  <strong>Manager only:</strong>
+  <%= @shift.manager_only %>
+</p>
+
+<%= link_to 'Edit', edit_shift_path(@shift) %> |
+<%= link_to 'Back', shifts_path %>

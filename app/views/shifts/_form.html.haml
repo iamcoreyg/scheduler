@@ -1,0 +1,31 @@
+= form_for(@shift) do |f|
+  - if @shift.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@shift.errors.count, "error")
+        prohibited this shift from being saved:
+      %ul
+        - @shift.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :start
+    %br/
+    = f.select :start, @hours.map { |value| [ value, value ] }
+  .field
+    = f.label :end
+    %br/
+    = f.select :end, @hours.map { |value| [ value, value ] }
+  .field
+    = f.label :active_days
+    %br/
+    -#= f.text_field :active_days
+    = f.label :active_days
+    - Date::DAYNAMES.each do |day|
+      = check_box_tag 'active_days[]', day
+      = day
+  .field
+    = f.label :manager_only
+    %br/
+    = f.check_box :manager_only
+  .actions
+    = f.submit

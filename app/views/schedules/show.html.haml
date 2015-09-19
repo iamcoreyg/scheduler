@@ -1,0 +1,7 @@
+- @schedule.each do |s|
+  = s.shift_id
+  - @shift = Shift.where(:id => s.shift_id)
+  = @shift[0].start
+  = @shift[0].end
+  = s.employee
+  %br

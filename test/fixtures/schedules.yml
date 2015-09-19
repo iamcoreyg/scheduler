@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shift_id: 1
+  employee: MyString
+  date: 2015-09-16 20:25:20
+
+two:
+  shift_id: 1
+  employee: MyString
+  date: 2015-09-16 20:25:20

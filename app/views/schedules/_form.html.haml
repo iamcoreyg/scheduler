@@ -1,0 +1,27 @@
+= form_for(@schedule) do |f|
+  - if @schedule.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@schedule.errors.count, "error")
+        prohibited this schedule from being saved:
+      %ul
+        - @schedule.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :shift_id
+    %br/
+    - i = 0
+    = f.select :shift_id, @shifts.map { |value| [ "#{i+=1}) #{value.start} - #{value.end}", value.id ] }
+  .field
+    = f.label :employee
+    %br/
+    = f.select :employee, @employees.map { |value| [ value.name, value.id ] }
+  .field
+    = f.label :date
+    Range
+    %br/
+    = f.date_select :start, options = {:discard_year => true}
+    %span -
+    = f.date_select :end, options = {:discard_year => true}
+  .actions
+    = f.submit

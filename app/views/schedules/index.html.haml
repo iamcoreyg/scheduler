@@ -1,0 +1,25 @@
+
+%p#notice= notice
+%h1 Listing Schedules
+%table
+  %thead
+    %tr
+      %th schedule id
+      %th Shift
+      %th Employee
+
+      %th{:colspan => "3"}
+  %tbody
+    -#= @schedules.inspect
+    - @schedules.each do |s|
+      -#- schedule.each do |s|
+      %tr
+        %td= s.schedule_id
+        %td= s.shift_id
+        %td= s.employee
+
+        %td= link_to 'Show', s
+        %td= link_to 'Edit', edit_schedule_path(s)
+        %td= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Schedule', new_schedule_path
