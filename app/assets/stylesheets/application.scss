@@ -9,36 +9,60 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require_tree .
- *= require_self
  */
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700|Open+Sans:600);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300|Open+Sans:600,700);
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "custom-bootstrap";
 @import "employees";
 @import "schedules";
 @import "shifts";
 @import "scaffolds";
 @import "utilities";
 
-$yellow: #FFC731;
-$blue: #309AC3;
-$darkgray: #252525;
-$primaryFont: "Roboto", sans-serif;
-$secondaryFont: "Open Sans", sans-serif;
+
 
 html, body {
   background: #EDF1F5;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: grayscale;
+  height: calc(100% - 100px);
+  font-family: sans-serif;
+}
 
+h1, h2, h3 {
+  font-family: $primaryFont;
+}
+
+a {
+  color: $blue;
+  font-family: $secondaryFont;
+
+  &:hover {
+    color: darken($blue, 20);
+    background: none;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: darken($blue, 15);
+  }
+}
+
+.secondary-action {
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #777 !important;
+  text-decoration: underline;
+  font-weight: 700;
 }
 
 #header-wrap {
-  background: $darkgray;
+  background: $darkGray;
   padding: 10px 0;
 }
 #header {
@@ -63,6 +87,24 @@ html, body {
   }
 }
 
+#intro {
+  padding: 30px 0;
+  text-align: center;
+  height: 100%;
+
+
+  h1 {
+    font-size: 40pt;
+    font-family: $primaryFont;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 19pt;
+    color: #888;
+  }
+}
+
 #top-date {
   font-family: "Roboto";
   font-size: 17pt;
@@ -70,6 +112,14 @@ html, body {
   color: #737373;
   background: #fff;
   border-bottom: 1px solid #ccc;
+}
+
+.box {
+  background-color: #fff;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0px 20px;
 }
 
 .new_user {
@@ -98,7 +148,7 @@ html, body {
     width: 100%;
     padding: 10px 0;
     border-radius: 2px;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.12);
+    box-shadow: $lightShadow;
 
     &:hover {
       background: lighten($blue, 10);
@@ -114,6 +164,10 @@ html, body {
   .field {
     margin-bottom: 15px;
   }
+}
+
+.bottom-row {
+  padding: 0 0 30px;
 }
 
 footer {

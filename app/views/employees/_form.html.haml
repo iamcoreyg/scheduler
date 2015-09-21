@@ -20,12 +20,26 @@
     = f.label :is_manager
     %br/
     = f.check_box :is_manager
+  .row#set-availability
+    .col-sm-2.no-padding
+      .col-sm-12.employee-row-height Monday
+      .col-sm-12.employee-row-height Tuesday
+      .col-sm-12.employee-row-height Wednesday
+      .col-sm-12.employee-row-height Thursday
+      .col-sm-12.employee-row-height Friday
+      .col-sm-12.employee-row-height Saturday
+      .col-sm-12.employee-row-height Sunday
+    .col-sm-10.no-padding
+      - @start_days.each do |day|
+        .col-sm-12.employee-row-height
+          - @hours.unshift('Off')
+          = f.text_field day, {class: 'range', :data => {:id => day}}
+          .slider-range{:data => {:id => day}}
+          %br
+            %input{type: "checkbox", :data => {:id => day}}
+            Unavailable
 
-  - @days.each do |day|
-    .field
-      = f.label day
-      - @hours.unshift('Off')
-      = f.select day, @hours.map { |value| if value == 'Off' then [ value, nil ] else [ value, value ] end }
+
 
   .actions
     = f.submit

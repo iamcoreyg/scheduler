@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :days, only: [:edit, :new]
+  before_action :days, only: [:edit, :new, :create]
   before_action :hours, only: [:edit, :new]
 
   # GET /employees
@@ -28,6 +28,21 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(employee_params)
+
+    i = 0
+    while i < @all_days.length - 1
+      input = @employee[@all_days[i]]
+
+      if input.blank? == false
+        startTime = input.split('-')[0]
+        endTime = input.split('-')[1]
+        @employee[@all_days[i]] = startTime
+        @employee[@all_days[i+1]] = endTime
+      end
+      i += 2
+    end
+
+    #####
 
     respond_to do |format|
       if @employee.save
@@ -70,7 +85,17 @@ class EmployeesController < ApplicationController
     end
 
     def days
-      @days = [
+      @start_days = [
+          :mon_start,
+          :tues_start,
+          :wed_start,
+          :thurs_start,
+          :fri_start,
+          :sat_start,
+          :sun_start,
+      ]
+
+      @all_days = [
           :mon_start,
           :mon_end,
           :tues_start,

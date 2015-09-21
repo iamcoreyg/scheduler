@@ -1,0 +1,8 @@
+.container.box
+  %h1 New Employee
+  %hr
+
+  = render 'form'
+
+  .col-sm-12.bottom-row
+    = link_to 'Back', employees_path, {class: 'secondary-action'}

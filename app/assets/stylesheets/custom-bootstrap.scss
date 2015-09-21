@@ -1,0 +1,22 @@
+.btn-primary {
+  background: $blue;
+  color: #fff !important;
+  border: none;
+  box-shadow: $lightShadow;
+
+  &:hover {
+    color: #fff;
+    background: darken($blue, 25);
+  }
+
+}
+
+.table {
+  border-bottom: 1px solid #ccc;
+
+  th {
+    font-family: "roboto";
+    font-weight: 300;
+    font-size: 13pt;
+  }
+}

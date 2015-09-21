@@ -1,7 +1,8 @@
-.container
+.container.box
   %p#notice= notice
-  %h1 Employees
+  %h1 Employee Availability
   %hr
+
   %table.table
     %thead
       %tr
@@ -18,8 +19,9 @@
       - @employees.each do |employee|
         %tr
           %td
-            %strong
-              = employee.name
+            %a
+              %strong
+                = link_to employee.name, employee
             %br
             %small
               = employee.position_title
@@ -57,8 +59,7 @@
             = employee.sun_start
             %span -
             = employee.sun_end
-          %td= link_to 'Show', employee
-          %td= link_to 'Edit', edit_employee_path(employee)
-          %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to 'Remove', employee, method: :delete, data: { confirm: 'Are you sure?' }
   %br/
-  = link_to 'New Employee', new_employee_path
+  .col-sm-12.bottom-row
+    = link_to 'Add Employee', new_employee_path, {class: 'btn btn-primary'}

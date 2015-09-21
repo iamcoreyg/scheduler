@@ -5,6 +5,7 @@ gem 'pg'
 gem 'tod'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'jquery-ui-rails'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
