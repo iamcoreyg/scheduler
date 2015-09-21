@@ -1,0 +1,64 @@
+.container
+  %p#notice= notice
+  %h1 Employees
+  %hr
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Monday
+        %th Tuesday
+        %th Wednesday
+        %th Thursday
+        %th Friday
+        %th Saturday
+        %th Sunday
+        %th{:colspan => "3"}
+    %tbody
+      - @employees.each do |employee|
+        %tr
+          %td
+            %strong
+              = employee.name
+            %br
+            %small
+              = employee.position_title
+          %td
+            = employee.mon_start
+            %span -
+            = employee.mon_end
+
+          %td
+            = employee.tues_start
+            %span -
+            = employee.tues_end
+
+          %td
+            = employee.wed_start
+            %span -
+            = employee.wed_end
+
+          %td
+            = employee.thurs_start
+            %span -
+            = employee.thurs_end
+
+          %td
+            = employee.fri_start
+            %span -
+            = employee.fri_end
+
+          %td
+            = employee.sat_start
+            %span -
+            = employee.sat_end
+
+          %td
+            = employee.sun_start
+            %span -
+            = employee.sun_end
+          %td= link_to 'Show', employee
+          %td= link_to 'Edit', edit_employee_path(employee)
+          %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Employee', new_employee_path

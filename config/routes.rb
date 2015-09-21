@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :schedules
   resources :shifts
   resources :employees
+
+  get 'schedules/:id' => 'schedules#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

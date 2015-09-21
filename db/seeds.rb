@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-1.times do
+
   Shift.create([
   {
       start: '5:45',
@@ -199,5 +199,3 @@
       sun_end: '22:00',
   })
 
-
-end

@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title Schedule
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container-fluid#header-wrap
+      .container#header
+        .col-sm-4.align-left
+          = image_tag('logo.png');
+        .col-sm-8.align-right
+          - if current_user
+            = link_to 'Schedules', schedules_path
+            = link_to 'Employees', employees_path
+            = link_to 'Shifts', shifts_path
+            = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+          - else
+            = link_to 'About', new_user_session_path
+            = link_to 'Sign In', new_user_session_path
+
+    - if current_user
+      .container-fluid#top-date
+        .container
+          = DateTime.now.strftime("%A, %B %d")
+
+    = yield
+
+    %footer.container-fluid
+      .container
+        &copy; 2015 CG3 Media. All Rights Reserved.

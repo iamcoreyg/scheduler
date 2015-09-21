@@ -1,5 +1,8 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :days, only: [:edit, :new]
+  before_action :hours, only: [:edit, :new]
 
   # GET /employees
   # GET /employees.json
@@ -15,25 +18,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
-
-    @days = [
-        :mon_start,
-        :mon_end,
-        :tues_start,
-        :tues_end,
-        :wed_start,
-        :wed_end,
-        :thurs_start,
-        :thurs_end,
-        :fri_start,
-        :fri_end,
-        :sat_start,
-        :sat_end,
-        :sun_start,
-        :sun_end
-    ]
-
-    @hours = create_hours(:start_time => 5.hours, :end_time => 22.hours)
   end
 
   # GET /employees/1/edit
@@ -81,6 +65,28 @@ class EmployeesController < ApplicationController
   end
 
   private
+    def hours
+      @hours = create_hours(:start_time => 5.hours, :end_time => 22.hours)
+    end
+
+    def days
+      @days = [
+          :mon_start,
+          :mon_end,
+          :tues_start,
+          :tues_end,
+          :wed_start,
+          :wed_end,
+          :thurs_start,
+          :thurs_end,
+          :fri_start,
+          :fri_end,
+          :sat_start,
+          :sat_end,
+          :sun_start,
+          :sun_end
+      ]
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
       @employee = Employee.find(params[:id])

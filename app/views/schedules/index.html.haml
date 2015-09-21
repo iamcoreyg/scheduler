@@ -1,25 +1,27 @@
-
-%p#notice= notice
-%h1 Listing Schedules
-%table
-  %thead
-    %tr
-      %th schedule id
-      %th Shift
-      %th Employee
-
-      %th{:colspan => "3"}
-  %tbody
-    -#= @schedules.inspect
-    - @schedules.each do |s|
-      -#- schedule.each do |s|
+.container
+  %p#notice= notice
+  %h1 Schedules
+  %table
+    %thead
       %tr
-        %td= s.schedule_id
-        %td= s.shift_id
-        %td= s.employee
+        %th schedule id
+        %th Dates
+        %th Go
 
-        %td= link_to 'Show', s
-        %td= link_to 'Edit', edit_schedule_path(s)
-        %td= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Schedule', new_schedule_path
+        %th{:colspan => "3"}
+    %tbody
+      - output_schedules = []
+      - @schedules.each do |s|
+        - if output_schedules.include? s.schedule_id
+          - next
+        - else
+          - output_schedules.push(s.schedule_id)
+        %tr
+          %td= s.schedule_id
+          %td= s.start.strftime("%B %d, %A")
+          %td
+            = link_to 'View', :class => "btn btn-primary", :action => "show", :id => s.schedule_id
+
+
+  %br/
+  = link_to 'New Schedule', new_schedule_path

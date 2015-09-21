@@ -3,7 +3,11 @@ source 'https://rubygems.org'
 gem 'haml'
 gem 'pg'
 gem 'tod'
-gem 'rename'
+gem 'devise'
+gem 'cancancan', '~> 1.10'
+
+gem 'bootstrap-sass', '~> 3.3.5'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

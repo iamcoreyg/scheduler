@@ -1,11 +1,11 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /schedules
   # GET /schedules.json
   def index
     @schedules = Schedule.all
-
   end
 
   # GET /schedules/1
@@ -28,7 +28,10 @@ class SchedulesController < ApplicationController
   # POST /schedules
   # POST /schedules.json
   def create
-    # @schedule = Schedule.new(schedule_params)
+    @schedule = Schedule.new(schedule_params)
+    puts 'yoooo'
+    rangeStart = Date.strptime("#{schedule_params['start(2i)']}/#{schedule_params['start(3i)']}/#{schedule_params['start(1i)']}", "%m/%d/%Y")
+    rangeEnd = Date.strptime("#{schedule_params['end(2i)']}/#{schedule_params['end(3i)']}/#{schedule_params['end(1i)']}", "%m/%d/%Y")
 
     @shifts = Shift.all
     @employees = Employee.all
@@ -61,7 +64,6 @@ class SchedulesController < ApplicationController
     end
 
     days.each_with_index do |dayName, dayOfTheWeek|
-      puts "---------------- #{dayName} ---------------- "
       @shifts.each do |s|
 
         s.active_days.split(",")
@@ -76,7 +78,7 @@ class SchedulesController < ApplicationController
 
             if employee_start_time.blank? == false && employee_end_time.blank? == false
               if(startTime >= employee_start_time && endTime <= employee_end_time)
-                @schedule = Schedule.create(:schedule_id => new_schedule_id, :shift_id => s.id, :employee => e.name, :date => Time.now, :start => DateTime.new, :end => DateTime.new)
+                @schedule = Schedule.create(:schedule_id => new_schedule_id, :shift_id => s.id, :employee => e.name, :date => Time.now, :start => rangeStart, :end => rangeEnd)
               end
             end
 
@@ -87,7 +89,7 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
+        format.html { redirect_to :action => "show", :id => new_schedule_id}
         format.json { render :show, status: :created, location: @schedule }
       else
         format.html { render :new }
@@ -128,6 +130,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:shift_id, :employee, :date, :schedule_id)
+      params.require(:schedule).permit(:shift_id, :employee, :date, :schedule_id, :start, :end)
     end
 end
